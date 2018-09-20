@@ -1,5 +1,6 @@
 #!/bin/bash
 # by: ZnHoCn
+# crontab:
 # 0 * * * * bash /<PATH>/slog/slog.sh 2&> /dev/null
 
 data_file="data.txt"
