@@ -5,6 +5,7 @@
 
 data_file="data.txt"
 date_file="date_$(date +%Y).log"
+github_url="git@github.com:znhocn/slog.git"
 
 cd $(cd `dirname $0`; pwd)
 git pull
@@ -26,5 +27,5 @@ else
     echo "git push fatal"
     cd $(cd `dirname $0`; pwd)/../
     rm -rf $(cd `dirname $0`; pwd)
-    git clone git@github.com:znhocn/slog.git
+    git clone $github_url
 fi
