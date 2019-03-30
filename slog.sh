@@ -17,3 +17,14 @@ echo "$(date +%F\ %H\:%M) is OK" >> $date_file
 git add .
 git commit -am "Updated: $(date +%F\ %H\:%M)"
 git push
+
+echo $(git push  2>&1 | grep fatal)
+
+if [ -z $(git push  2>&1 | grep fatal) ]; then
+    echo "git push ok"
+else
+    echo "git push fatal"
+    cd $(cd `dirname $0`; pwd)/../
+    rm -rf $(cd `dirname $0`; pwd)
+    git clone git@github.com:znhocn/slog.git
+fi
