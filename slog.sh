@@ -19,9 +19,9 @@ git add .
 git commit -am "Updated: $(date +%F\ %H\:%M)"
 git push
 
-echo $(git commit -am "Updated: $(date +%F\ %H\:%M)")
+echo $(git commit -am "Updated: $(date +%F\ %H\:%M)" 2>&1 | grep fatal)
 
-if [ -z "$(git commit -am "Updated: $(date +%F\ %H\:%M)"  2>&1 | grep error)" ]; then
+if [ -z "$(git commit -am "Updated: $(date +%F\ %H\:%M)" 2>&1 | grep error)" ]; then
     echo "git commit ok"
 else
     echo "git commit fatal"
@@ -30,9 +30,9 @@ else
     git clone $github_url
 fi
 
-echo $(git push  2>&1 | grep fatal)
+echo $(git push 2>&1 | grep fatal)
 
-if [ -z "$(git push  2>&1 | grep fatal)" ]; then
+if [ -z "$(git push 2>&1 | grep fatal)" ]; then
     echo "git push ok"
 else
     echo "git push fatal"
