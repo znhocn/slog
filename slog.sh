@@ -4,12 +4,13 @@
 # 0 * * * * bash /<PATH>/slog/slog.sh 2&> /dev/null
 
 data_file="data.txt"
-date_file="date_$(date +%Y).log"
+date_file="date/date_$(date +%Y).log"
 github_url="git@github.com:znhocn/slog.git"
 
 cd $(cd `dirname $0`; pwd)
 git pull
 
+[ -d date ] || mkdir date
 touch $data_file
 cat /dev/urandom | base64 | head -c 1000 > $data_file
 touch $date_file
