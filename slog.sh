@@ -7,7 +7,8 @@ data_file="data.txt"
 date_file="date/date_$(date +%Y).log"
 github_url="git@github.com:znhocn/slog.git"
 
-cd $(cd `dirname $0`; pwd)
+echo "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd $(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 git pull
 
 [ -d date ] || mkdir date
@@ -27,8 +28,8 @@ if [ -z "$(git commit -am "Updated: $(date +%F\ %H\:%M)" 2>&1 | grep error)" ]; 
     echo "git commit ok"
 else
     echo "git commit fatal"
-    cd $(cd `dirname $0`; pwd)/../
-    rm -rf $(cd `dirname $0`; pwd)
+    cd $(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../
+    rm -rf $(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
     git clone $github_url
 fi
 
@@ -38,7 +39,7 @@ if [ -z "$(git push 2>&1 | grep fatal)" ]; then
     echo "git push ok"
 else
     echo "git push fatal"
-    cd $(cd `dirname $0`; pwd)/../
-    rm -rf $(cd `dirname $0`; pwd)
+    cd $(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../
+    rm -rf $(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
     git clone $github_url
 fi
